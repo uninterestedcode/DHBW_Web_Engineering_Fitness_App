@@ -1,0 +1,8 @@
+# Echte Trainingsdaten des Teams. Bleiben lokal, weil das Repository
+# fuer GitHub Pages oeffentlich ist.
+daten/beispiel-csv/
+
+# Betriebssystem und Editor
+.DS_Store
+Thumbs.db
+.vscode/
