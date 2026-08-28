@@ -1,9 +1,9 @@
 # Datenkonzept
 
-> **Status: Vorschlag.** Dieses Dokument ist ein Entwurf und keine im Team beschlossene
-> Festlegung. Jede Angabe steht zur Diskussion und wird erst verbindlich, wenn das Team
-> sie annimmt. Was tatsächlich entschieden ist, steht in `07-technische-entscheidungen.md`
-> und ist dort als entschieden gekennzeichnet.
+> **Status: Vorschlag.** Dieses Dokument ist ein Entwurf. Es beschreibt einen möglichen
+> Weg und wird verbindlich, sobald das Team ihn annimmt. Jede Angabe steht zur Diskussion.
+> Beschlossene Punkte stehen in `07-technische-entscheidungen.md` mit dem Status
+> entschieden.
 
 ## Grundregel
 
@@ -150,7 +150,7 @@ Das Ergebnis wird nur angezeigt. Zurückgeschrieben wird ausschließlich der eig
 Die Schwelle liegt bei fünf Personen und gilt für Kurse wie für Studiengänge.
 
 Der letzte Punkt ist eine Produktentscheidung. Ein Rang allein wirkt bei geringem
-Trainingsumfang entmutigend und arbeitet damit gegen den Zweck der Anwendung.
+Trainingsumfang entmutigend und widerspricht damit dem Zweck der Anwendung.
 
 ## Bewertungsebenen
 
@@ -172,9 +172,9 @@ unabhängig von der Netzverbindung im Präsentationsraum.
 ## Speicherung und Datenschutz
 
 Eigene Daten liegen in `localStorage` und verlassen das Gerät nicht. Es gibt keinen
-Server, der Trainingsdaten entgegennimmt. `localStorage` statt Arbeitsspeicher ist
-nötig, weil die Anwendung mehrseitig ist und ein Wechsel von `dashboard.html` zu
-`rangliste.html` die Seite neu lädt, siehe TE-10.
+Server, der Trainingsdaten entgegennimmt. `localStorage` ist nötig, weil die Anwendung
+mehrseitig ist und ein Wechsel von `dashboard.html` zu `rangliste.html` die Seite neu
+lädt. Daten im Arbeitsspeicher wären dabei verloren, siehe TE-10.
 
 `profil.html` bietet das Löschen der eigenen Daten an.
 

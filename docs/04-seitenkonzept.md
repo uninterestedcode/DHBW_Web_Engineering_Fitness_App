@@ -1,9 +1,9 @@
 # Seitenkonzept
 
-> **Status: Vorschlag.** Dieses Dokument ist ein Entwurf und keine im Team beschlossene
-> Festlegung. Jede Angabe steht zur Diskussion und wird erst verbindlich, wenn das Team
-> sie annimmt. Was tatsächlich entschieden ist, steht in `07-technische-entscheidungen.md`
-> und ist dort als entschieden gekennzeichnet.
+> **Status: Vorschlag.** Dieses Dokument ist ein Entwurf. Es beschreibt einen möglichen
+> Weg und wird verbindlich, sobald das Team ihn annimmt. Jede Angabe steht zur Diskussion.
+> Beschlossene Punkte stehen in `07-technische-entscheidungen.md` mit dem Status
+> entschieden.
 
 ## Seiten
 

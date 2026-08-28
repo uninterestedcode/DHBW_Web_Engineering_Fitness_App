@@ -2,8 +2,8 @@
 
 > **Status: teils entschieden, teils Vorschlag.** Entschieden sind die Grundform
 > (mehrere HTML-Seiten ohne Framework und ohne Build-Schritt) und das gemeinsame Layout
-> über Custom Elements. Der übrige Aufbau — Modulschnitt, Ordnerseams, Hash-Router,
-> `<template>`-Muster — ist ein Vorschlag. Der Stand je Punkt steht in
+> über Custom Elements. Ein Vorschlag sind der Modulschnitt, die Ordnerstruktur, der
+> Hash-Router und das `<template>`-Muster. Der Stand je Punkt steht in
 > `07-technische-entscheidungen.md`.
 
 ## Grundform
@@ -44,15 +44,16 @@ flowchart TD
 
 ### Das Unterscheidungsmerkmal
 
-Eine Anwendungsseite verarbeitet Trainingsdaten. Eine Inhaltsseite tut das nicht.
+Eine Anwendungsseite verarbeitet Trainingsdaten. Alle übrigen Seiten sind
+Inhaltsseiten.
 
 Woher die Daten stammen, ändert die Einteilung nicht. Eigene Daten aus `state.js`,
 die simulierte Kohorte aus `cohort-source.js` oder später eine Datenbank führen alle
 zur selben Einordnung. Die Einteilung bleibt damit auch nach einem Wechsel auf
 Ausbaustufe 2 gültig, siehe `08-ausblick.md`.
 
-Das Merkmal ist nicht "enthält JavaScript". `kontakt.html` prüft ein Formular in
-JavaScript und bleibt eine Inhaltsseite, weil dabei keine Trainingsdaten im Spiel sind.
+Das Merkmal ist die Verarbeitung von Trainingsdaten. `kontakt.html` prüft ein Formular
+in JavaScript und bleibt eine Inhaltsseite, weil dabei keine Trainingsdaten anfallen.
 `profil.html` zählt zu den Anwendungsseiten, weil sie über `state.js` die Kurszuordnung
 schreibt und die eigenen Daten löscht.
 
@@ -179,7 +180,7 @@ Die Daten der nutzenden Person liegen in `localStorage` als ein JSON-Objekt. Sie
 Die simulierte Kohorte liegt als Datei im Repository und wird nur gelesen. Beide
 Bestände werden getrennt gehalten und nie ineinander geschrieben.
 
-## Wiederverwendbare Bausteine
+## Wiederkehrende Strukturen
 
 Wiederholte Strukturen wie Ranglisteneinträge oder Trainingskarten werden als
 `<template>` in der HTML-Datei hinterlegt und in JavaScript mit `cloneNode` vervielfältigt.
@@ -201,10 +202,9 @@ Stand heute ist nichts davon gebaut. Die Umsetzung beginnt am 04.09.2026.
 
 ## Erweiterungspunkt
 
-Eine gemeinsame Datenbasis ist vorgesehen und nicht umgesetzt. Sie berührt zwei Dateien:
-`cohort-source.js` liest dann aus einer Schnittstelle statt aus der JSON-Datei, und der
-Upload schreibt in die Datenbank statt in `localStorage`. Analyse und Darstellung bleiben
-unverändert.
+Eine gemeinsame Datenbasis ist vorgesehen und nicht umgesetzt. Sie berührt zwei Dateien.
+`cohort-source.js` bezieht die Kohorte dann über eine Schnittstelle. Der Upload legt die
+Daten dann in der Datenbank ab. Analyse und Darstellung bleiben unverändert.
 
 Die Wege dorthin, ihr Aufwand und die Entscheidungskriterien stehen in
 `08-ausblick.md`. Die Entscheidung fällt nach der PHP-Vorlesung am 09.10.2026 und ist

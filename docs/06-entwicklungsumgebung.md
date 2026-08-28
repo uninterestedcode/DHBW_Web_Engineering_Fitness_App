@@ -1,9 +1,9 @@
 # Entwicklungsumgebung
 
-> **Status: Vorschlag.** Dieses Dokument ist ein Entwurf und keine im Team beschlossene
-> Festlegung. Jede Angabe steht zur Diskussion und wird erst verbindlich, wenn das Team
-> sie annimmt. Was tatsächlich entschieden ist, steht in `07-technische-entscheidungen.md`
-> und ist dort als entschieden gekennzeichnet.
+> **Status: Vorschlag.** Dieses Dokument ist ein Entwurf. Es beschreibt einen möglichen
+> Weg und wird verbindlich, sobald das Team ihn annimmt. Jede Angabe steht zur Diskussion.
+> Beschlossene Punkte stehen in `07-technische-entscheidungen.md` mit dem Status
+> entschieden.
 
 ## Einrichtung, einmalig
 
@@ -84,7 +84,7 @@ Dateien außer `docs/`, `scripts/`, `daten/beispiel-csv/` und `.git/`.
 
 Unter `daten/beispiel-csv/` liegen echte Exporte des Teams. Jede Person exportiert
 ihre Daten aus der eigenen App und legt die Datei dort ab. Damit wird der Import gegen
-echte Formate entwickelt statt gegen erfundene.
+echte Formate entwickelt.
 
 Der Ordner steht in `.gitignore`. Die Dateien bleiben auf den eigenen Rechnern, weil
 das Repository für GitHub Pages öffentlich ist. Zum Teilen genügt die WhatsApp-Gruppe.
