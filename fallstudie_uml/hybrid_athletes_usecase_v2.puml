@@ -1,0 +1,244 @@
+@startuml hybrid_athletes_usecase_v2
+' ============================================================
+' Hybrid Athletes - Anwendungsfalldiagramm (UML 2.5)
+' Quelle: Handskizze
+'
+' Notationsregeln, die hier angewendet werden:
+'   Akteur            Strichfigur, steht ausserhalb der Systemgrenze
+'   Systemgrenze      Rechteck mit dem Namen des Systems
+'   Anwendungsfall    Ellipse, benannt als Verbphrase im Infinitiv
+'   Assoziation       durchgezogene Linie, nur Akteur <-> Anwendungsfall
+'   <<include>>       gestrichelter Pfeil, Basisfall --> eingebundener Fall,
+'                     wird immer ausgefuehrt
+'   <<extend>>        gestrichelter Pfeil, erweiternder Fall --> Basisfall,
+'                     wird nur am Extension Point und unter Bedingung ausgefuehrt
+'   Generalisierung   durchgezogene Linie mit hohler Dreiecksspitze,
+'                     speziell --> allgemein
+'
+' Layout-Entscheidungen (ohne UML-Bedeutung):
+'   linetype ortho         alle Kanten laufen rechtwinklig.
+'   Umbruch im Label       das Label von UC_Connect enthaelt ein \n und macht
+'                          das Oval hoeher. Der Router
+'                          verteilt die drei abgehenden include-Kanten dadurch
+'                          auf drei Hoehen. Bei einzeiligem Label liegen zwei
+'                          davon 2 Pixel auseinander und sehen wie eine Linie aus.
+'   hidden-Kette           UC_ChooseApp -> UC_EnterCreds -> UC_AllowSync
+'                          verteilt die drei include-Ziele von "App verbinden"
+'                          auf drei Spalten. Ohne diese Kette legt der Router
+'                          die drei Kanten auf denselben Abschnitt und die
+'                          Beschriftungen liegen uebereinander.
+'   note on link           die Bedingung der extend-Beziehung steht in einer
+'                          Notiz. Die Notiz hat eine deckende Flaeche, eine
+'                          Kante dahinter durchkreuzt den Text nicht.
+'   Gruppe "Fremdsysteme"  haelt die drei sekundaeren Akteure zusammen
+'   "Addon: Gym"           liegt im Paket "Statistik", weil die Generalisierung
+'                          dorthin zeigt; das verkuerzt die Kante
+'   Legende                nimmt den Text der frueheren Notizen auf und
+'                          spart damit drei Hilfslinien quer durch das Bild
+'   eine hidden-Kante      UC_Leaderboard -[hidden]- DHBWAuth haelt die Gruppe
+'                          "Fremdsysteme" am rechten Rand auf Hoehe des
+'                          Systems. Die drei hidden-Kanten der ersten Fassung
+'                          hatten dagegen die Paketreihenfolge verdreht.
+'   Akteurfarben           jeder Akteur hat eine eigene Farbe. Seine
+'                          Assoziationen tragen dieselbe Farbe.
+'                          include, extend und Generalisierung bleiben
+'                          schwarz. Die Farbe hat keine UML-Bedeutung.
+' ============================================================
+
+left to right direction
+
+' ------------------------------------------------------------
+' Farbpalette der Akteure (Okabe-Ito, fuer Farbfehlsichtigkeit
+' unterscheidbar). LINE ist die Kanten- und Randfarbe,
+' BACK die Fuellung der Strichfigur.
+' ------------------------------------------------------------
+!$C_STUDENT_LINE = "0072B2"
+!$C_STUDENT_BACK = "DCEAF5"
+!$C_ADMIN_LINE   = "D55E00"
+!$C_ADMIN_BACK   = "F8E3D3"
+!$C_AUTH_LINE    = "009E73"
+!$C_AUTH_BACK    = "D8F0E7"
+!$C_APP_LINE     = "CC79A7"
+!$C_APP_BACK     = "F7E4EE"
+!$C_KI_LINE      = "6B3FA0"
+!$C_KI_BACK      = "E6DEF2"
+
+skinparam linetype ortho
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam ArrowColor #333333
+skinparam actorStyle awesome
+skinparam nodesep 26
+skinparam ranksep 70
+skinparam usecase {
+  BackgroundColor #FFFFFF
+  BorderColor #333333
+}
+skinparam package {
+  BorderColor #777777
+  BackgroundColor #FBFBFB
+}
+skinparam legend {
+  BackgroundColor #FBFBFB
+  BorderColor #AAAAAA
+}
+
+' ============================================================
+' Primaere Akteure (vor der Systemgrenze deklariert,
+' damit sie im Layout links stehen)
+' ============================================================
+actor "Student" as Student #line:$C_STUDENT_LINE;back:$C_STUDENT_BACK
+actor "Admin"   as Admin   #line:$C_ADMIN_LINE;back:$C_ADMIN_BACK
+
+' ============================================================
+' Systemgrenze
+' ============================================================
+rectangle "Hybrid Athletes" {
+
+  package "Basis" {
+    usecase "Anmelden"                   as UC_Login
+    usecase "Anmeldung authentifizieren" as UC_AuthLogin
+    usecase "Profilbild anpassen"        as UC_Avatar
+    usecase "Daten löschen"              as UC_DeleteData
+  }
+
+  package "Fitness-App-Anbindung" {
+    usecase "App\nverbinden"              as UC_Connect
+    usecase "App wählen"                  as UC_ChooseApp
+    usecase "Kontodaten eingeben"         as UC_EnterCreds
+    usecase "Kontodaten authentifizieren" as UC_AuthCreds
+    usecase "Synchronisation erlauben"    as UC_AllowSync
+    usecase "Daten synchronisieren"       as UC_Sync
+  }
+
+  package "Statistik" {
+    usecase UC_Stats as "Statistiken einsehen
+--
+extension points
+  Motivation angefragt"
+    usecase "Zeitraum anpassen"       as UC_Period
+    usecase "KI-Motivator fragen"     as UC_AskAI
+
+    usecase "Laufstatistik einsehen"  as UC_Run
+    usecase "Eigenes Profil einsehen" as UC_OwnProfile
+    usecase "Anderes Profil einsehen" as UC_OtherProfile
+    usecase "Leaderboard einsehen"    as UC_Leaderboard
+
+    package "Addon: Gym" #F1EBFA {
+      usecase "Gym-Statistik einsehen" as UC_Gym
+    }
+  }
+
+  package "Addon: Events" #F1EBFA {
+    usecase "Am Event teilnehmen" as UC_JoinEvent
+    usecase "Event konfigurieren" as UC_ConfigEvent
+  }
+
+  package "Administration" {
+    usecase "Daten verwalten" as UC_ManageData
+  }
+}
+
+' ============================================================
+' Sekundaere Akteure (Fremdsysteme), als Gruppe
+' ============================================================
+rectangle "Fremdsysteme" <<extern>> {
+  actor "DHBW-Auth"   as DHBWAuth   #line:$C_AUTH_LINE;back:$C_AUTH_BACK
+  actor "Fitness-App" as FitnessApp #line:$C_APP_LINE;back:$C_APP_BACK
+  actor "KI-Dienst"   as KIDienst   #line:$C_KI_LINE;back:$C_KI_BACK
+}
+
+' ============================================================
+' Layout-Hilfslinie (unsichtbar, keine UML-Bedeutung)
+' Haelt die Gruppe "Fremdsysteme" rechts neben der Systemgrenze.
+' ============================================================
+UC_Leaderboard -[hidden]- DHBWAuth
+
+' Verteilt die drei include-Ziele von "App verbinden" auf drei Spalten.
+UC_ChooseApp  -[hidden]-> UC_EnterCreds
+UC_EnterCreds -[hidden]-> UC_AllowSync
+
+' ============================================================
+' Assoziationen - Student
+' ============================================================
+Student -[#$C_STUDENT_LINE,thickness=2]- UC_Login
+Student -[#$C_STUDENT_LINE,thickness=2]- UC_Avatar
+Student -[#$C_STUDENT_LINE,thickness=2]- UC_DeleteData
+Student -[#$C_STUDENT_LINE,thickness=2]- UC_Connect
+Student -[#$C_STUDENT_LINE,thickness=2]- UC_Stats
+Student -[#$C_STUDENT_LINE,thickness=2]- UC_JoinEvent
+
+' ============================================================
+' Assoziationen - Admin
+' ============================================================
+Admin -[#$C_ADMIN_LINE,thickness=2]- UC_ManageData
+Admin -[#$C_ADMIN_LINE,thickness=2]- UC_ConfigEvent
+Admin -[#$C_ADMIN_LINE,thickness=2]- UC_Avatar
+Admin -[#$C_ADMIN_LINE,thickness=2]- UC_DeleteData
+
+' ============================================================
+' Assoziationen - sekundaere Akteure
+' ============================================================
+UC_AuthLogin -[#$C_AUTH_LINE,thickness=2]- DHBWAuth
+UC_AuthCreds -[#$C_APP_LINE,thickness=2]- FitnessApp
+UC_Sync      -[#$C_APP_LINE,thickness=2]- FitnessApp
+UC_AskAI     -[#$C_KI_LINE,thickness=2]- KIDienst
+
+' ============================================================
+' include  (Basisfall --> eingebundener Fall)
+' ============================================================
+UC_Login      ..> UC_AuthLogin  : <<include>>
+
+UC_Connect    ..> UC_ChooseApp  : <<include>>
+UC_Connect    ..> UC_EnterCreds : <<include>>
+UC_Connect    ..> UC_AllowSync  : <<include>>
+UC_EnterCreds ..> UC_AuthCreds  : <<include>>
+
+UC_Stats      ..> UC_Period     : <<include>>
+
+' ============================================================
+' extend  (erweiternder Fall --> Basisfall)
+' ============================================================
+UC_AskAI ..> UC_Stats : <<extend>>
+note on link
+  Bedingung:
+  Motivation angefragt
+end note
+
+' ============================================================
+' Generalisierung  (speziell --> allgemein)
+' ============================================================
+UC_Stats <|-- UC_Run
+UC_Stats <|-- UC_Gym
+
+UC_Run <|-- UC_OwnProfile
+UC_Run <|-- UC_OtherProfile
+UC_Run <|-- UC_Leaderboard
+
+' ============================================================
+' Anmerkungen und offene Punkte aus der Skizze
+' ============================================================
+legend right
+  **Akteure und ihre Assoziationen**
+  |<#$C_STUDENT_LINE>     | Student |
+  |<#$C_ADMIN_LINE>     | Admin |
+  |<#$C_AUTH_LINE>     | DHBW-Auth |
+  |<#$C_APP_LINE>     | Fitness-App |
+  |<#$C_KI_LINE>     | KI-Dienst |
+  include, extend und Generalisierung sind schwarz.
+
+  **Anmerkungen zur Skizze**
+  1. "Anmelden" nutzt die DHBW-Zugangsdaten. Die Anbindung an
+     DHBW-Auth ist in der Skizze als offen markiert.
+  2. Die Liste der unterstützten Apps ist in der Skizze offen gelassen.
+  3. "Synchronisation erlauben" ist Vorbedingung für "Daten synchronisieren".
+  4. "Leaderboard einsehen" hat in der Skizze eine include-Kante
+     ohne lesbares Ziel.
+  5. Profil- und Leaderboard-Sicht stehen in der Skizze unter
+     "Laufstatistik einsehen". Alternative: direkt unter
+     "Statistiken einsehen", damit sie auch für Gym gelten.
+  6. Die Skizze verbindet Admins auch mit "Profilbild anpassen"
+     und "Daten löschen".
+endlegend
+
+@enduml

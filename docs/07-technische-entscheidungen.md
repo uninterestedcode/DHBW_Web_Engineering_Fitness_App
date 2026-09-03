@@ -23,7 +23,7 @@ Unterseite erklären kann.
 Verworfen: React, weil damit nur eine Person Fehler beheben könnte und die geprüften
 Techniken verdeckt würden.
 
-## TE-02 Mehrere HTML-Seiten statt einer einzelnen Seite
+## TE-02 Mehrere eigenständige HTML-Seiten
 
 Status: **entschieden**
 Kontext: Eine einseitige Anwendung mit Router war im Gespräch.
@@ -49,13 +49,13 @@ Kontext: Kopf und Fuß auf zehn Seiten identisch halten.
 Entscheidung: `<site-nav>` und `<site-footer>` als Custom Elements in `js/layout.js`.
 Der aktive Punkt wird über `location.pathname` bestimmt und mit `aria-current="page"`
 markiert.
-Begründung: Eine Definition für alle Seiten. Für die Seitenbesitzer ist es ein Tag
-statt fünfundzwanzig Zeilen Auszeichnung.
+Begründung: Eine Definition gilt für alle Seiten. Für die Seitenbesitzer genügt ein
+einzelnes Tag in der eigenen Datei.
 Verworfen: Kopieren in jede Datei, weil jede Änderung zehn Dateien betrifft.
 Zurückgestellt: PHP-Include. Das setzt einen Webspace mit PHP voraus, siehe OP-03.
 Grenze: Der Umfang bleibt auf Kopf und Fuß beschränkt.
 
-## TE-05 Simulierte Kohorte statt Backend
+## TE-05 Simulierte Kohorte
 
 Status: **entschieden**
 Kontext: Ranglisten benötigen Daten mehrerer Personen. Der Browser hat keinen Zugriff
@@ -101,9 +101,9 @@ Verworfen: History-API für die gesamte Seite, weil dafür jede Adresse serverse
 Status: **entschieden**
 Kontext: Die Fallstudie nannte zunächst Gym und Laufen. In Notion steht dazu E-01.
 Entscheidung: Die Webanwendung setzt in dieser Ausbaustufe ausschließlich Laufen um.
-Begründung: Der Umfang halbiert sich. Es bleibt ein Importmodul statt drei, ein
-Datentyp statt vier, und die Referenzwerte für Laufen sind veröffentlicht und
-belegbar. Drei Personen im Team lernen HTML, CSS und JavaScript parallel zur Umsetzung.
+Begründung: Der Umfang halbiert sich. Es bleibt ein Importmodul und ein Datentyp;
+mit Gym waren es drei Importmodule und vier Datentypen. Die Referenzwerte für Laufen
+sind veröffentlicht und belegbar. Drei Personen im Team lernen HTML, CSS und JavaScript parallel zur Umsetzung.
 Folge für die Systemanalyse: Das fachliche Klassendiagramm behält die abstrakte
 Trainingseinheit mit Laufeinheit als einziger gebauter Ausprägung. Krafteinheit,
 Übung und Satz bleiben als geplante Erweiterung im Modell. Die Vererbungsbeziehung

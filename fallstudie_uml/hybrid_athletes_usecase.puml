@@ -1,0 +1,194 @@
+@startuml hybrid_athletes_usecase
+' ============================================================
+' Hybrid Athletes - Anwendungsfalldiagramm (UML 2.5)
+' Quelle: Handskizze
+'
+' Notationsregeln, die hier angewendet werden:
+'   Akteur            Strichfigur, steht ausserhalb der Systemgrenze
+'   Systemgrenze      Rechteck mit dem Namen des Systems
+'   Anwendungsfall    Ellipse, benannt als Verbphrase im Infinitiv
+'   Assoziation       durchgezogene Linie, nur Akteur <-> Anwendungsfall
+'   <<include>>       gestrichelter Pfeil, Basisfall --> eingebundener Fall,
+'                     wird immer ausgefuehrt
+'   <<extend>>        gestrichelter Pfeil, erweiternder Fall --> Basisfall,
+'                     wird nur am Extension Point und unter Bedingung ausgefuehrt
+'   Generalisierung   durchgezogene Linie mit hohler Dreiecksspitze,
+'                     speziell --> allgemein
+' ============================================================
+
+left to right direction
+
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam ArrowColor #333333
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FFFFFF
+  BorderColor #333333
+}
+skinparam package {
+  BorderColor #777777
+  BackgroundColor #FBFBFB
+}
+skinparam note {
+  BackgroundColor #FFF8DC
+  BorderColor #AAAAAA
+}
+
+' ============================================================
+' Menschliche Akteure (vor der Systemgrenze deklariert,
+' damit sie im Layout links stehen)
+' ============================================================
+actor "Student" as Student
+actor "Admin"   as Admin
+
+' ============================================================
+' Systemgrenze
+' ============================================================
+rectangle "Hybrid Athletes" {
+
+  package "Basis" {
+    usecase "Anmelden"                   as UC_Login
+    usecase "Anmeldung authentifizieren" as UC_AuthLogin
+    usecase "Profilbild anpassen"        as UC_Avatar
+    usecase "Daten löschen"              as UC_DeleteData
+  }
+
+  package "Fitness-App-Anbindung" {
+    usecase "App verbinden"               as UC_Connect
+    usecase "App wählen"                  as UC_ChooseApp
+    usecase "Kontodaten eingeben"         as UC_EnterCreds
+    usecase "Kontodaten authentifizieren" as UC_AuthCreds
+    usecase "Synchronisation erlauben"    as UC_AllowSync
+    usecase "Daten synchronisieren"       as UC_Sync
+  }
+
+  package "Statistik" {
+    usecase UC_Stats as "Statistiken einsehen
+    --
+    extension points
+      Motivation angefragt"
+    usecase "Zeitraum anpassen"       as UC_Period
+    usecase "KI-Motivator fragen"     as UC_AskAI
+
+    usecase "Laufstatistik einsehen"  as UC_Run
+    usecase "Eigenes Profil einsehen" as UC_OwnProfile
+    usecase "Anderes Profil einsehen" as UC_OtherProfile
+    usecase "Leaderboard einsehen"    as UC_Leaderboard
+  }
+
+  package "Addon: Gym" #F1EBFA {
+    usecase "Gym-Statistik einsehen" as UC_Gym
+  }
+
+  package "Addon: Events" #F1EBFA {
+    usecase "Am Event teilnehmen" as UC_JoinEvent
+    usecase "Event konfigurieren" as UC_ConfigEvent
+  }
+
+  package "Administration" {
+    usecase "Daten verwalten" as UC_ManageData
+  }
+}
+
+' ============================================================
+' Fremdsysteme (nach der Systemgrenze deklariert,
+' damit sie im Layout rechts stehen)
+' ============================================================
+actor "DHBW-Auth"   as DHBWAuth   <<Fremdsystem>>
+actor "Fitness-App" as FitnessApp <<Fremdsystem>>
+actor "KI-Dienst"   as KIDienst   <<Fremdsystem>>
+
+' ============================================================
+' Assoziationen - Student
+' ============================================================
+Student -- UC_Login
+Student -- UC_Avatar
+Student -- UC_DeleteData
+Student -- UC_Connect
+Student -- UC_Stats
+Student -- UC_JoinEvent
+
+' ============================================================
+' Assoziationen - Admin
+' ============================================================
+Admin -- UC_ManageData
+Admin -- UC_ConfigEvent
+Admin -- UC_Avatar
+Admin -- UC_DeleteData
+
+' ============================================================
+' Assoziationen - sekundäre Akteure (Fremdsysteme)
+' ============================================================
+UC_AuthLogin -- DHBWAuth
+UC_AuthCreds -- FitnessApp
+UC_Sync      -- FitnessApp
+UC_AskAI     -- KIDienst
+
+' ============================================================
+' Layout-Hilfslinien (unsichtbar, keine UML-Bedeutung)
+' Schieben die Fremdsysteme an den rechten Rand.
+' ============================================================
+UC_OwnProfile   -[hidden]- DHBWAuth
+UC_Leaderboard  -[hidden]- FitnessApp
+UC_OtherProfile -[hidden]- KIDienst
+
+' ============================================================
+' include  (Basisfall --> eingebundener Fall)
+' ============================================================
+UC_Login      ..> UC_AuthLogin  : <<include>>
+
+UC_Connect    ..> UC_ChooseApp  : <<include>>
+UC_Connect    ..> UC_EnterCreds : <<include>>
+UC_Connect    ..> UC_AllowSync  : <<include>>
+UC_EnterCreds ..> UC_AuthCreds  : <<include>>
+
+UC_Stats      ..> UC_Period     : <<include>>
+
+' ============================================================
+' extend  (erweiternder Fall --> Basisfall)
+' ============================================================
+UC_AskAI ..> UC_Stats : <<extend>>\n(Motivation angefragt)
+
+' ============================================================
+' Generalisierung  (speziell --> allgemein)
+' ============================================================
+UC_Stats <|-- UC_Run
+UC_Stats <|-- UC_Gym
+
+UC_Run <|-- UC_OwnProfile
+UC_Run <|-- UC_OtherProfile
+UC_Run <|-- UC_Leaderboard
+
+' ============================================================
+' Notizen aus der Skizze
+' ============================================================
+note bottom of UC_Login
+  Nutzt die DHBW-Zugangsdaten.
+  Die Anbindung an DHBW-Auth ist
+  in der Skizze als offen markiert.
+end note
+
+note bottom of UC_Connect
+  Die Liste der unterstützten Apps
+  ist in der Skizze offen gelassen.
+end note
+
+note bottom of UC_AllowSync
+  Vorbedingung für
+  "Daten synchronisieren".
+end note
+
+legend right
+  **Offene Punkte aus der Skizze**
+  1. "Leaderboard einsehen" hat eine include-Kante
+     ohne lesbares Ziel.
+  2. Profil- und Leaderboard-Sicht stehen in der Skizze
+     unter "Laufstatistik einsehen". Alternative: direkt
+     unter "Statistiken einsehen", damit sie auch
+     für Gym gelten.
+  3. Die Skizze verbindet Admins auch mit
+     "Profilbild anpassen" und "Daten löschen".
+endlegend
+
+@enduml

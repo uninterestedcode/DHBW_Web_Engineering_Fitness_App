@@ -54,15 +54,14 @@ flowchart LR
 
 ## Ausbaustufe 2: gemeinsame Datenbasis ohne Anmeldung
 
-Trainingsdaten liegen in einer Datenbank statt im Browser. Die Zuordnung erfolgt über
-die eingegebene Matrikelnummer.
+Trainingsdaten liegen in einer Datenbank. Die Zuordnung erfolgt über die eingegebene
+Matrikelnummer.
 
 Damit entstehen echte Ranglisten. Lädt eine zweite Person Daten hoch, verändert sich
 die Platzierung der ersten.
 
-Was sich ändert: der Upload schreibt in die Datenbank statt in `localStorage`,
-und `cohort-source.js` liest aus der Datenbank statt aus der JSON-Datei. Alles Übrige
-bleibt unverändert.
+Was sich ändert: der Upload legt die Daten in der Datenbank ab, und `cohort-source.js`
+bezieht die Kohorte von dort. Alles Übrige bleibt unverändert.
 
 ```mermaid
 flowchart LR
@@ -92,7 +91,7 @@ Betrieb mit vier Testkonten und eingespielten Daten die angemessene Form.
 
 ## Ausbaustufe 4: Auswertung auf dem Server
 
-Aggregationen werden in der Datenbank berechnet statt im Browser.
+Aggregationen werden in der Datenbank berechnet.
 
 ```sql
 create view kurs_rangliste as
@@ -110,14 +109,14 @@ having count(distinct s.id) >= 5;
 
 Zwei Wirkungen:
 
-1. Der Browser lädt wenige Zeilen statt tausender Datensätze.
+1. Der Browser lädt wenige Zeilen. Ohne die View wären es mehrere tausend Datensätze.
 2. Die letzte Zeile setzt die Mindestgruppengröße in der Datenbank durch. Ein Kurs mit
-   vier Teilnehmenden erscheint in der Antwort der Schnittstelle nicht. Die Regel lässt
-   sich damit auch durch direkten Aufruf der Schnittstelle nicht umgehen.
+   vier Teilnehmenden erscheint in der Antwort der Schnittstelle nicht. Die Regel gilt
+   damit auch bei direktem Aufruf der Schnittstelle.
 
-Punkt 2 ist der Unterschied zwischen einer Anzeige, die Daten verbirgt, und einer
-Schnittstelle, die sie nicht herausgibt. Er gehört in die Präsentation und in die
-Seminararbeit.
+Punkt 2 verlagert die Regel von der Oberfläche in die Schnittstelle. Die Daten eines zu
+kleinen Kurses werden gar nicht erst ausgeliefert. Das gehört in die Präsentation und in
+die Seminararbeit.
 
 Zusätzlich möglich: eine Serverfunktion erzeugt Motivationstexte zur Laufzeit über eine
 KI-Schnittstelle. Der Schlüssel liegt dabei auf dem Server und erscheint nicht im
@@ -148,8 +147,8 @@ Bis dahin ändert sich nichts an der Umsetzung.
 
 Der Schritt auf Ausbaustufe 2 berührt zwei Dateien: `cohort-source.js` und den
 Schreibweg des Uploads. Ausbaustufe 3 kommt mit einer Anmeldeseite hinzu. Ausbaustufe 4
-verlagert Berechnungen aus `analysis/cohort.js` in die Datenbank. Nur der erste Schritt
-ist klein.
+verlagert Berechnungen aus `analysis/cohort.js` in die Datenbank. Der Schritt auf
+Ausbaustufe 2 ist von den dreien der kleinste.
 
 ## Voraussetzung, damit der Wechsel klein bleibt
 
@@ -161,8 +160,8 @@ sofort, unabhängig davon, welche Ausbaustufe später kommt.
 3. Eigene und simulierte Daten liegen im selben internen Format vor.
 4. `model.js` enthält keine Felder, die nur bei einer bestimmten Quell-App vorkommen.
 
-Werden diese Regeln eingehalten, beschränkt sich der Umstieg auf zwei Dateien. Werden
-sie gebrochen, ist er eine Neuentwicklung.
+Diese Regeln halten den Umstieg auf zwei Dateien begrenzt. Ohne sie müsste die
+Datenschicht neu entwickelt werden.
 
 ## Bewusst nicht geplant
 

@@ -1,9 +1,9 @@
 # Gestaltungskonzept
 
-> **Status: Vorschlag.** Dieses Dokument ist ein Entwurf und keine im Team beschlossene
-> Festlegung. Jede Angabe steht zur Diskussion und wird erst verbindlich, wenn das Team
-> sie annimmt. Was tatsächlich entschieden ist, steht in `07-technische-entscheidungen.md`
-> und ist dort als entschieden gekennzeichnet.
+> **Status: Vorschlag.** Dieses Dokument ist ein Entwurf. Es beschreibt einen möglichen
+> Weg und wird verbindlich, sobald das Team ihn annimmt. Jede Angabe steht zur Diskussion.
+> Beschlossene Punkte stehen in `07-technische-entscheidungen.md` mit dem Status
+> entschieden.
 
 ## Ausgangspunkt schmaler Bildschirm
 
@@ -49,7 +49,7 @@ bleiben unverändert. Der Aufwand beschränkt sich auf einen Block in `variables
 
 ## Komponenten
 
-Wiederkehrende Bausteine, jeweils einmal in `layout.css` definiert:
+Wiederkehrende Komponenten, jeweils einmal in `layout.css` definiert:
 
 Kopfleiste mit Navigation, Kachel für eine Kennzahl, Diagrammrahmen, Ranglisteneintrag,
 Trainingskarte, Hinweisfeld für leere Zustände, Schaltflächen in zwei Ausprägungen,
@@ -58,7 +58,7 @@ Formularfeld mit Beschriftung und Fehlermeldung, Fußbereich.
 ## Klassennamen
 
 Deutsche Begriffe, kleingeschrieben, Wörter mit Bindestrich getrennt. Der Name
-beschreibt den Baustein: `.kennzahl-kachel`, `.rangliste-eintrag`,
+beschreibt die Komponente: `.kennzahl-kachel`, `.rangliste-eintrag`,
 `.rangliste-eintrag--eigen` für die hervorgehobene Zeile.
 
 ## Diagramme

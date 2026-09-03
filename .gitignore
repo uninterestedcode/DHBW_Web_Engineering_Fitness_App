@@ -6,3 +6,7 @@ daten/beispiel-csv/
 .DS_Store
 Thumbs.db
 .vscode/
+
+fallstudie_uml/plantuml_setup.md
+fallstudie_uml/archive/
+fallstudie_uml/research/
