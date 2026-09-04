@@ -1,8 +1,6 @@
 # Dokumentation Web Engineering
 
-Technische Dokumentation der Webanwendung "DHBW Sportler".
-Kurs: Webprogrammierung, WWI25AMB, DHBW Mannheim, WS 2026/27.
-Dozent: Dipl.-Ing. Dirk Henel. Präsentation: 23.10.2026.
+Technische Dokumentation der Webanwendung "DHBW Sportler". Kurs: Webprogrammierung, WWI25AMB, DHBW Mannheim, WS 2026/27. Dozent: Dipl.-Ing. Dirk Henel. Präsentation: 23.10.2026.
 
 ## Ablage: was liegt wo
 
@@ -12,8 +10,7 @@ Dozent: Dipl.-Ing. Dirk Henel. Präsentation: 23.10.2026.
 | Fallstudie Systemanalyse: Umfeld, Projektauftrag, Use Cases, Entscheidungen, Glossar | Notion |
 | UML-Diagramme als Bilddatei, Präsentationen | Google Drive, eingebettet in Notion |
 
-Fachliche Begriffe werden in Notion im Glossar festgelegt. Dieses Repository verwendet
-dieselben Begriffe und definiert sie kein zweites Mal.
+Fachliche Begriffe werden in Notion im Glossar festgelegt. Dieses Repository verwendet dieselben Begriffe und definiert sie kein zweites Mal.
 
 ## Dokumente
 
@@ -28,12 +25,9 @@ dieselben Begriffe und definiert sie kein zweites Mal.
 | `07-technische-entscheidungen.md` | Entscheidungen mit Begründung, offene Punkte | verbindlich |
 | `08-ausblick.md` | Zielumfang, mögliche Ausbaustufen, Vergleich der Wege | Vorschlag |
 
-**Nur `07-technische-entscheidungen.md` ist verbindlich**, und dort auch nur die
-Einträge mit dem Status "entschieden". Alle übrigen Dokumente sind Entwürfe einer
-Person und beschreiben einen möglichen Weg. Sie sind zum Widersprechen gedacht.
+**Nur `07-technische-entscheidungen.md` ist verbindlich**, und dort auch nur die Einträge mit dem Status "entschieden". Alle übrigen Dokumente sind Entwürfe einer Person und beschreiben einen möglichen Weg. Sie sind zum Widersprechen gedacht.
 
-Wird ein Vorschlag im Team angenommen, wandert er als Eintrag nach
-`07-technische-entscheidungen.md` und bekommt dort den Status "entschieden".
+Wird ein Vorschlag im Team angenommen, wandert er als Eintrag nach `07-technische-entscheidungen.md` und bekommt dort den Status "entschieden".
 
 ```mermaid
 flowchart TD
@@ -53,10 +47,6 @@ Wer neu dazukommt, liest `06-entwicklungsumgebung.md` und danach `01-architektur
 
 ## Stand
 
-Stand heute ist kein Quellcode geschrieben. Die Umsetzung beginnt nach der
-HTML-Vorlesung am 04.09.2026. Die Dokumente beschreiben einen vorgeschlagenen
-Zielumfang.
+Stand heute ist kein Quellcode geschrieben. Die Umsetzung beginnt nach der HTML-Vorlesung am 04.09.2026. Die Dokumente beschreiben einen vorgeschlagenen Zielumfang.
 
-Alle Dokumente sind Entwurf. Sie werden fortgeschrieben, sobald eine Entscheidung fällt.
-Änderungen an einer Entscheidung werden in `07-technische-entscheidungen.md` nachgetragen,
-damit die Begründungen für die Präsentation und die Seminararbeit verfügbar bleiben.
+Alle Dokumente sind Entwurf. Sie werden fortgeschrieben, sobald eine Entscheidung fällt. Änderungen an einer Entscheidung werden in `07-technische-entscheidungen.md` nachgetragen, damit die Begründungen für die Präsentation und die Seminararbeit verfügbar bleiben.

@@ -200,10 +200,7 @@ UC_Stats      ..> UC_Period     : <<include>>
 ' extend  (erweiternder Fall --> Basisfall)
 ' ============================================================
 UC_AskAI ..> UC_Stats : <<extend>>
-note on link
-  Bedingung:
-  Motivation angefragt
-end note
+
 
 ' ============================================================
 ' Generalisierung  (speziell --> allgemein)

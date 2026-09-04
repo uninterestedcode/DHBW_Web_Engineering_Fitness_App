@@ -1,9 +1,6 @@
 # Projektstruktur
 
-> **Status: Vorschlag.** Dieses Dokument ist ein Entwurf. Es beschreibt einen möglichen
-> Weg und wird verbindlich, sobald das Team ihn annimmt. Jede Angabe steht zur Diskussion.
-> Beschlossene Punkte stehen in `07-technische-entscheidungen.md` mit dem Status
-> entschieden.
+> **Status: Vorschlag.** Dieses Dokument ist ein Entwurf. Es beschreibt einen möglichen Weg und wird verbindlich, sobald das Team ihn annimmt. Jede Angabe steht zur Diskussion. Beschlossene Punkte stehen in `07-technische-entscheidungen.md` mit dem Status entschieden.
 
 ## Ordner
 
@@ -55,25 +52,18 @@
 
 - Datei- und Ordnernamen: kleingeschrieben, ohne Umlaute, Wörter mit Bindestrich getrennt.
 - CSS-Klassen: deutsch, kleingeschrieben, mit Bindestrich, zum Beispiel `.rangliste-eintrag`.
-- JavaScript: Variablen und Funktionsnamen deutsch, damit sie zum Glossar passen.
-  Ausnahme sind Schlüsselwörter und Namen aus der Browser-Schnittstelle.
-- Dateinamen englisch, wie im Ordnerbaum oben. Die Regel zur deutschen Benennung gilt
-  für Bezeichner im Code, nicht für Datei- und Ordnernamen.
+- JavaScript: Variablen und Funktionsnamen deutsch, damit sie zum Glossar passen. Ausnahme sind Schlüsselwörter und Namen aus der Browser-Schnittstelle.
+- Dateinamen englisch, wie im Ordnerbaum oben. Die Regel zur deutschen Benennung gilt für Bezeichner im Code, nicht für Datei- und Ordnernamen.
 - Kommentare und Commit-Nachrichten deutsch.
 
 ## Zuständigkeiten
 
-Jede Seite hat genau eine verantwortliche Person. Wer eine Seite besitzt, bearbeitet
-deren HTML-Datei und die zugehörige Datei unter `css/seiten/`. Damit entstehen bei der
-gemeinsamen Arbeit kaum Konflikte.
+Jede Seite hat genau eine verantwortliche Person. Wer eine Seite besitzt, bearbeitet deren HTML-Datei und die zugehörige Datei unter `css/seiten/`. Damit entstehen bei der gemeinsamen Arbeit kaum Konflikte.
 
 Die Zuordnung steht in `04-seitenkonzept.md`.
 
-Gemeinsame Dateien werden nur nach Absprache geändert: `variables.css`, `base.css`,
-`layout.css` und `js/layout.js`. Eine Änderung dort wirkt auf jede Seite.
+Gemeinsame Dateien werden nur nach Absprache geändert: `variables.css`, `base.css`, `layout.css` und `js/layout.js`. Eine Änderung dort wirkt auf jede Seite.
 
 ## Vorgabe aus dem Kurs
 
-Folie 4 der Veranstaltungsunterlagen: jede Person wählt eine Unterseite und erklärt
-Begriffe anhand des Quelltextes. Jede Person braucht deshalb mindestens eine Seite,
-die sie selbst geschrieben hat.
+Folie 4 der Veranstaltungsunterlagen: jede Person wählt eine Unterseite und erklärt Begriffe anhand des Quelltextes. Jede Person braucht deshalb mindestens eine Seite, die sie selbst geschrieben hat.

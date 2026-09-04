@@ -1,9 +1,6 @@
 # Seitenkonzept
 
-> **Status: Vorschlag.** Dieses Dokument ist ein Entwurf. Es beschreibt einen möglichen
-> Weg und wird verbindlich, sobald das Team ihn annimmt. Jede Angabe steht zur Diskussion.
-> Beschlossene Punkte stehen in `07-technische-entscheidungen.md` mit dem Status
-> entschieden.
+> **Status: Vorschlag.** Dieses Dokument ist ein Entwurf. Es beschreibt einen möglichen Weg und wird verbindlich, sobald das Team ihn annimmt. Jede Angabe steht zur Diskussion. Beschlossene Punkte stehen in `07-technische-entscheidungen.md` mit dem Status entschieden.
 
 ## Seiten
 
@@ -20,8 +17,7 @@
 | `datenschutz.html` | Umgang mit Gesundheitsdaten, lokale Speicherung | Inhalt | offen |
 | `impressum.html` | Pflichtangaben | Inhalt | offen |
 
-Das Eigentum wird im Team vergeben. Jede Person übernimmt mindestens eine Seite,
-die sie selbst schreibt.
+Das Eigentum wird im Team vergeben. Jede Person übernimmt mindestens eine Seite, die sie selbst schreibt.
 
 ```mermaid
 flowchart TD
@@ -38,8 +34,7 @@ flowchart TD
     PROF --> DASH
 ```
 
-Die Navigation ist auf allen Seiten identisch und erreicht jede Seite. Die zusätzlichen
-Pfeile zeigen Wege, die in den Seiteninhalten verlinkt sind.
+Die Navigation ist auf allen Seiten identisch und erreicht jede Seite. Die zusätzlichen Pfeile zeigen Wege, die in den Seiteninhalten verlinkt sind.
 
 ## Ansichten im Dashboard
 
@@ -78,8 +73,7 @@ Der Wechsel ändert nur den Hash. Die Seite wird nicht neu geladen.
 | Demoprofil auswählen | `dashboard` | vorbereitete Datensätze laden |
 | Formularprüfung | `kontakt` | HTML-Prüfattribute und JavaScript |
 
-Das Demoprofil dient der Präsentation. Damit lässt sich der Funktionsumfang zeigen,
-ohne im Vortrag eine Datei hochzuladen.
+Das Demoprofil dient der Präsentation. Damit lässt sich der Funktionsumfang zeigen, ohne im Vortrag eine Datei hochzuladen.
 
 ## Reihenfolge der Umsetzung
 
@@ -122,9 +116,6 @@ gantt
     Puffer                   :2026-10-20, 3d
 ```
 
-Die Schritte 1 bis 3 laufen nach den HTML- und CSS-Vorlesungen am 04.09., 11.09.,
-18.09. und 25.09. Die Schritte 4 bis 6 setzen die JavaScript-Vorlesung am 02.10. voraus.
+Die Schritte 1 bis 3 laufen nach den HTML- und CSS-Vorlesungen am 04.09., 11.09., 18.09. und 25.09. Die Schritte 4 bis 6 setzen die JavaScript-Vorlesung am 02.10. voraus.
 
-Die Termine der Fallstudie Systemanalyse binden dieselben vier Personen. Der 23.10.
-trägt beide Abschlusspräsentationen. Die letzten drei Tage vor dem 23.10. sind als
-Puffer eingeplant und ohne Aufgabe.
+Die Termine der Fallstudie Systemanalyse binden dieselben vier Personen. Der 23.10. trägt beide Abschlusspräsentationen. Die letzten drei Tage vor dem 23.10. sind als Puffer eingeplant und ohne Aufgabe.
